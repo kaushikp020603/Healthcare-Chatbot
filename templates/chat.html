@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mera Chela - Healthcare Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h1>🩺 AarogyaMarg - Your Healthcare Assistant</h1>
+            <p>Welcome! How can I assist you with your health today?</p>
+        </header>
+
+        <div class="chat-box">
+            {% for role, text in chat_history %}
+                <div class="message {{ role | lower }}">
+                    <strong>{{ role }}:</strong> {{ text | safe }}  <!-- Use 'safe' filter to allow HTML -->
+                </div>
+            {% endfor %}
+        </div>
+
+        <form method="POST" action="/" class="input-form">
+            <input type="text" id="input" name="input" placeholder="Ask me anything about your health..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
